@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="css/fenye.css">
+  <style type="text/css">
+        ${demo.css}
+  </style>
+</head>
+<body>
+  <header>
+      <a href="###" class="header-tab">访问量</a>
+      <a href="###" class="header-tab">投放</a>
+      <div class="header-right">
+          <p class="user-name"><a href="###">cashin@163.com</a></p>
+          <!-- <p class="user-password"></p> -->
+      </div>
+  </header>
+  <div class="container">
+    <div class="container-sidebar">
+      <div class="container-sidebar-box">
+          <a href="###"><input type="button" value="全选" id="btn1" /></a>
+          <a href="###"><input type="button" value="反选" id="btn2" /></a>
+          <input type="checkbox" id="ch1" />
+          <ul id="ul1">
+              <li><input type="checkbox" id="ipt1" />&nbsp;&nbsp;<label for="ipt1">中石油</label></li>
+              <li><input type="checkbox" id="ipt2"/>&nbsp;&nbsp;<label for="ipt2">山西邮政</label></li>
+              <li><input type="checkbox" id="ipt3"/>&nbsp;&nbsp;<label for="ipt3">锦江礼享</label></li>
+              <li><input type="checkbox" id="ipt4"/>&nbsp;&nbsp;<label for="ipt4">宣榛科技</label></li>
+              <li><input type="checkbox" id="ipt5"/>&nbsp;&nbsp;<label for="ipt5">费里尼</label></li>
+              <li><input type="checkbox" id="ipt6"/>&nbsp;&nbsp;<label for="ipt6">LOVECLUB</label></li>
+          </ul>
+      </div>
+    </div>
+    <div class="container-main">
+      <div class="container-main-box">
+        <div class="container-main-box-menu">
+            <input type="button" value="导出" class="checkOut">
+            <input type="text" class="ui-datepicker-time" readonly value="" />
+            <div class="ui-datepicker-css"> 
+                <div class="ui-datepicker-quick">
+                    <p>快捷日期<a class="ui-close-date">X</a></p>
+                    <div>
+                        <input class="ui-date-quick-button" type="button" value="今天" alt="0"  name=""/>
+                        <input class="ui-date-quick-button" type="button" value="昨天" alt="-1" name=""/>
+                        <input class="ui-date-quick-button" type="button" value="前3天" alt="-2" name=""/>
+                        <input class="ui-date-quick-button" type="button" value="前7天" alt="-6" name=""/>
+                        <input class="ui-date-quick-button" type="button" value="前30天" alt="-29" name=""/>
+                        <!-- <input class="ui-date-quick-button" type="button" value="60天内" alt="-59" name=""/> -->
+                    </div>
+                </div>
+                <div class="ui-datepicker-choose">
+                    <p>自选日期</p>
+                    <div class="ui-datepicker-date">
+                        <input name="startDate" id="startDate" class="startDate" readonly value="2014/12/20" type="text">
+                       -
+                        <input name="endDate" id="endDate" class="endDate" readonly  value="2014/12/20" type="text" disabled onChange="datePickers()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="container-main-box-tab">
+            <li>
+               <a href="###">
+                   请求总数<br>
+                    <span>1000</span>
+              </a>
+              <div class="active-one"></div>
+            </li>
+             <li>
+               <a href="###">
+                   优惠券展示总数<br>
+                   <span>1000</span>
+              </a>
+              <div></div>
+             </li>
+            <li>
+                <a href="###">
+                   点击优惠券总数<br>
+                   <span>1000</span>
+                </a>
+                <div></div>
+            </li>
+              <li>
+                <a href="###">
+                   点击率<br>
+                   <span>1000</span>
+                </a>
+                <div></div>
+              </li>
+              <li>
+                <a href="###">
+                   优惠券下载总数<br>
+                   <span>1000</span>
+                </a>
+                <div></div>
+              </li>
+              <li>
+                <a href="###">
+                   估算收入<br>
+                   <span>1000</span>
+                </a>
+                <div></div>
+              </li>
+        </ul>
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto;"></div>
+        <table id="cs_table" class="datatable"></table>
+      </div>
+    </div>
+  </div>
+      
+</body>
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>
+<script type="text/javascript" src="js/share.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/fenye.js"></script>
+<!-- <script src="js/dark-blue.js"></script> -->
+<!-- <script src="http://cdn.hcharts.cn/highcharts/modules/exporting.js"></script> -->
+<script type="text/javascript">
+  var btn1 = document.getElementById("btn1");
+  var btn2 = document.getElementById("btn2");
+  var ch1 = document.getElementById("ch1");
+  var ul1 = document.getElementById("ul1");
+  var inputs = ul1.getElementsByTagName("input");
+  //    alert(inputs.length);
+
+  btn1.onclick = function (){
+    
+    for (var i=0; i<inputs.length; i++){
+      
+      inputs[i].checked = true;
+    }
+    ch1.checked = true;
+  }
+  btn2.onclick = function (){
+    var bol = true;//假设所有的input都是为false
+    for (var i=0; i<inputs.length; i++){
+      //验证我的假设
+      if (inputs[i].checked == true){
+        bol = false;
+      }
+      inputs[i].checked = !inputs[i].checked;
+    }
+    if (bol){
+      ch1.checked = true;
+    } 
+  }
+  for (var i=0; i<inputs.length; i++){
+    inputs[i].onclick = function (){
+      
+      for (var i=0; i<inputs.length; i++){
+        if (inputs[i].checked == false){
+          break;
+        }
+      }
+      if (i == inputs.length){
+        ch1.checked = true;
+      }else{
+        ch1.checked = false;
+      }
+    }
+  }
+
+  $(function () {
+      $('#container').highcharts({
+          title: {  
+              text: '表格1',
+              x: -20 //center
+          },
+          subtitle: {
+              text: '2016.7.18',
+              x: -20
+          },
+          xAxis: {
+              title: {
+                  text: '月份'
+              },
+              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          },
+          yAxis: {
+              title: {
+                  text: '温度 (°C)'
+              },
+              plotLines: [{
+                  value: 0,
+                  width: 1,
+                  color: '#808080'
+              }]
+          },
+          tooltip: {
+              valueSuffix: '°C'
+          },
+          legend: {
+              layout: 'vertical',
+              align: 'right',
+              verticalAlign: 'middle',
+              borderWidth: 0
+          },
+          series: [{
+              name: '上海', 
+              data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+          }, {
+              name: '北京',
+              data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+          }, {
+              name: '广州',
+              data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+          }, {
+              name: '深圳',
+              data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+          }]
+      });
+  });
+   var data = [];
+    for(var i=0;i<334;i++){
+        data[i] = {id:i+1,name:"jason"+(i+1),gender:"男",age:26,address:"成都"};
+    }
+    var cs = new table({
+        "tableId":"cs_table",    //必须
+        "headers":["序号","姓名","性别","年龄","地址"],   //必须
+        "data":data,        //必须
+        "displayNum": 6,    //必须   默认 10
+       "groupDataNum":9  //可选    默认 10
+    });
+
+    var lis = document.querySelectorAll(".container-main-box-tab li");
+    var divs = document.querySelectorAll(".container-main-box-tab li div");            
+    
+    for (var i=0; i<lis.length; i++){
+      lis[i].index = i;//自定义属性
+      lis[i].onclick = function (){
+        
+        for (var j=0; j<lis.length; j++){
+          lis[j].className = "";
+          divs[j].className = "";
+        }
+        divs[this.index].className = "active-one";
+      }
+    }
+</script>
+</html>
