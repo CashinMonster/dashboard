@@ -81,9 +81,6 @@
 	});
 
 ###生成如下折线图
-
-<!-- <img src="img/123.png" style="width:80%;margin-left: 10%;"> -->
-
 <!DOCTYPE html>
 	<html lang="en">
 	<head>
@@ -96,10 +93,8 @@
 		<script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
 		<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
 		<script type="text/javascript">
-			// js代码
 			$(function () {
 			    $('#container').highcharts({
-			    	<!-- 标题 -->
 			        title: {
 			            text: 'Monthly Average Temperature',
 			            x: -20 //center
@@ -108,12 +103,10 @@
 			            text: 'Source: WorldClimate.com',
 			            x: -20
 			        },
-			        <!-- x轴 -->
 			        xAxis: {
 			            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 			                         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 			        },
-			        <!-- y轴 -->
 			        yAxis: {
 			            title: {
 			                text: 'Temperature (°C)'
