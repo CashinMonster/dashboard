@@ -25,7 +25,7 @@
 	</html>
 
 2.编写js代码
-	##### 以基础折线图为例
+##### 以基础折线图为例
 
 	$(function () {
     $('#container').highcharts({
